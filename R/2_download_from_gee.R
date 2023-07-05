@@ -1,7 +1,16 @@
 
 # Load library
+# 2 Load reticulate and rgee
+library("reticulate")
+library("rgee") 
+library("googledrive")
+library("googleCloudStorageR")
 library("geojsonio")
 library("readxl") # to read excel files
+
+projectname <- 'ee-martabonato91'
+my_email <- 'marta.bonato91@gmail.com'
+ee_Initialize(user = my_email, drive = T, gcs = F) 
 
 # Query an image collection on GEE
 dataset <- ee$ImageCollection("projects/sat-io/open-datasets/landcover/ESRI_Global-LULC_10m")
@@ -11,9 +20,6 @@ ee_print(dataset) # to have information on the Image Collection
 
 # create a buffer size
 size <- 1000
-
-# Initialize the drive if necessary
-ee_Initialize(drive = TRUE)
 
 # Option 1: Adding points coordinates manually 
 #pointsx <- c(-74.46,12,11.75)  #x = long
